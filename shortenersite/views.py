@@ -10,7 +10,7 @@ from .models import Urls
 
 def index(request):
     c = {}
-    return  render('shortensite/index.html', c)
+    return render(request, 'shortenersite/index.html', c)
 
 
 def redirect_original(request, short_id):
