@@ -1,7 +1,9 @@
-from django.urls import path, include
+from django.urls import path
+
+from .views import index, redirect_original, shorten_url
 
 urlpatterns = [
-    path('^$', 'index', name='home'),
-    path('^(?P<short_id>\w{6})$', 'redirect_original', name='redirectoriginal'),
-    path('^makeshort/$', 'shorten_url', name='shortenurl'),
+    path(r'^$', index, name='home'),
+    path(r'^(?P<short_id>\w{6})$', redirect_original, name='redirectoriginal'),
+    path(r'^makeshort/$', shorten_url, name='shortenurl'),
 ]
