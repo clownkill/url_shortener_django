@@ -1,0 +1,19 @@
+{% extends "shortenersite/base.html" %}
+
+{% block title %}URL Shortner - Make your URL shorter!{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    {% for url in urls %}
+        <div class="panel-footer">
+            <span id="url-result">
+                   Сокращенная ссылка: <a href="{{ base_url }}/{{ url.short_id }}">{{ base_url }}/{{ url.short_id }}</a>
+                   Полная ссылка: <a href="{{ url.httpurl }}">{{ url.httpurl }}</a>
+                   Количество переходов: {{ url.count }}
+            </span>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

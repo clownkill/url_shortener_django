@@ -12,6 +12,14 @@ def index(request):
     return render(request, 'shortenersite/index.html')
 
 
+def show_urls(request):
+    context = {
+        'urls': Urls.objects.all(),
+        'base_url': settings.SITE_URL,
+    }
+    return render(request, 'shortenersite/urls.html', context)
+
+
 def redirect_original(request, short_id):
     url = get_object_or_404(Urls, pk=short_id)
     url.count += 1

@@ -5,22 +5,22 @@ margin-bottom: 60px;
 
 a:hover{
 text-decoration: none;
+color: #8b0000;
 }
 
 header {
-border-bottom: 1px solid #eeeeee;
+border-bottom: 1px solid #a1a1a1;
 margin-bottom: 30px;
 padding-bottom: 10px;
 clear: both;
 }
 
 #wrap {
-max-width: 700px;
 margin: 5px 10px 10px 10px;
 padding: 10px;
 text-align: left;
 }
 #url-result {
-color: #00e000;
+color: #5d5e68;
 display: hidden;
 }
