@@ -9,8 +9,7 @@ from django.conf import settings
 from .models import Urls
 
 def index(request):
-    c = {}
-    return render(request, 'shortenersite/index.html', c)
+    return render(request, 'shortenersite/index.html')
 
 
 def redirect_original(request, short_id):
@@ -24,6 +23,8 @@ def shorten_url(request):
     url = request.POST.get('url', '')
     if not (url == ''):
         short_id = get_short_code()
+        if not(url.startswith('http')):
+            url = normalize_url(url)
         b = Urls(httpurl=url, short_id=short_id)
         b.save()
 
@@ -41,3 +42,11 @@ def get_short_code():
             temp = Urls.objects.get(pk=short_id)
         except:
             return short_id
+
+
+def normalize_url(url):
+    if url.startswith('www'):
+        url = f'http://{url}'
+    else:
+        url = f'http://www.{url}'
+    return url

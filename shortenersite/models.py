@@ -1,4 +1,5 @@
 from django.db import models
+from django.core import validators
 
 
 class Urls(models.Model):
@@ -9,7 +10,8 @@ class Urls(models.Model):
     )
     httpurl = models.URLField(
         max_length=200,
-        verbose_name='Полная ссылка'
+        verbose_name='Полная ссылка',
+        validators=[validators.URLValidator,]
     )
     pup_date = models.DateTimeField(
         auto_now=True,
