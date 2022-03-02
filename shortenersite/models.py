@@ -26,4 +26,3 @@ class Urls(models.Model):
     class Meta:
         verbose_name_plural = 'Ссылки'
         verbose_name = 'Ссылка'
-        ordering = ['-pub_date']
