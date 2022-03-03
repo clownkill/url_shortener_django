@@ -20,7 +20,12 @@ margin: 5px 10px 10px 10px;
 padding: 10px;
 text-align: left;
 }
+
 #url-result {
 color: #5d5e68;
 display: hidden;
+}
+
+.flex-container {
+    display: flex;
 }

@@ -8,10 +8,12 @@
     {% for url in urls %}
         <div class="panel-footer">
             <span id="url-result">
-                   Сокращенная ссылка: <a href="{{ base_url }}/{{ url.short_id }}">{{ base_url }}/{{ url.short_id }}</a>
-                   Полная ссылка: <a href="{{ url.httpurl }}">{{ url.httpurl }}</a>
-                   Количество переходов: {{ url.count }}
-                   Дата создания ссылки: {{ url.pub_date }}
+                <div class="flex-container">
+                    <div>Сокращенная ссылка: <a href="{{ base_url }}/{{ url.short_id }}">{{ base_url }}/{{ url.short_id }}</a></div>
+                    <div>Полная ссылка: <a href="{{ url.httpurl }}">{{ url.httpurl }}</a></div>
+                    <div>Количество переходов: {{ url.count }}</div>
+                    <div>Дата создания ссылки: {{ url.pub_date }}</div>
+                </div>
             </span>
         </div>
     {% endfor %}
