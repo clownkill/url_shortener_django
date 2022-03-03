@@ -1,4 +1,5 @@
 import random
+import hashlib
 import string
 import json
 
@@ -30,7 +31,7 @@ def redirect_original(request, short_id):
 def shorten_url(request):
     url = request.POST.get('url', '')
     if not (url == ''):
-        short_id = get_short_code()
+        short_id = get_short_code(url)
         if not(url.startswith('http')):
             url = normalize_url(url)
         b = Urls(httpurl=url, short_id=short_id)
@@ -41,11 +42,9 @@ def shorten_url(request):
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     return HttpResponse(json.dumps({'error': 'error occurs'}), content_type='application/json')
 
-def get_short_code():
-    length = 5
-    char = string.ascii_uppercase + string.digits + string.ascii_lowercase
+def get_short_code(url):
     while True:
-        short_id = ''.join(random.choice(char) for x in range(length))
+        short_id = hashlib.md5(url.encode()).hexdigest()[:5]
         try:
             temp = Urls.objects.get(pk=short_id)
         except:
