@@ -13,7 +13,7 @@ class Urls(models.Model):
         verbose_name='Полная ссылка',
         validators=[validators.URLValidator,]
     )
-    pup_date = models.DateTimeField(
+    pub_date = models.DateTimeField(
         auto_now=True,
         verbose_name='Дата создания ссылки'
     )
@@ -28,3 +28,4 @@ class Urls(models.Model):
     class Meta:
         verbose_name_plural = 'Ссылки'
         verbose_name = 'Ссылка'
+        ordering = ('-pub_date',)
