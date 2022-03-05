@@ -24,3 +24,7 @@ text-align: left;
 color: #5d5e68;
 display: hidden;
 }
+
+.flex-container {
+    display: flex; /* flex || inline-flex */
+}
