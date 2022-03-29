@@ -36,7 +36,7 @@ def shorten_url(request):
         processed_url.save()
 
         response_data = {}
-        response_data['url'] = settings.SITE_URL + '/' + slug
+        response_data['url'] = f'{settings.SITE_URL}/{slug}'
 
         return JsonResponse(response_data)
     return JsonResponse({'error': 'error occurs'})
