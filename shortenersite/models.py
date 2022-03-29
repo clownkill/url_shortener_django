@@ -3,7 +3,7 @@ from django.core import validators
 
 
 class Urls(models.Model):
-    short_id = models.SlugField(
+    slug = models.SlugField(
         max_length=6,
         primary_key=True,
         verbose_name='Сокращенная ссылка'

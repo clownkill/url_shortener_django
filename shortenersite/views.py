@@ -29,24 +29,24 @@ def redirect_original(request, short_id):
 def shorten_url(request):
     url = request.POST.get('url', '')
     if not (url == ''):
-        short_id = get_short_code(url)
+        slug = get_short_code(url)
         if not(url.startswith('http')):
             url = normalize_url(url)
-        b = Urls(httpurl=url, short_id=short_id)
+        b = Urls(httpurl=url, slug=slug)
         b.save()
 
         response_data = {}
-        response_data['url'] = settings.SITE_URL + '/' + short_id
+        response_data['url'] = settings.SITE_URL + '/' + slug
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     return HttpResponse(json.dumps({'error': 'error occurs'}), content_type='application/json')
 
 def get_short_code(url):
     while True:
-        short_id = hashlib.md5(url.encode()).hexdigest()[:5]
+        slug = hashlib.md5(url.encode()).hexdigest()[:5]
         try:
-            temp = Urls.objects.get(pk=short_id)
+            temp = Urls.objects.get(pk=slug)
         except:
-            return short_id
+            return slug
 
 
 def normalize_url(url):
