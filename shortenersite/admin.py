@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from shortenersite.models import Urls
+from shortenersite.models import Url
 
 
-class UrlsAdmin(admin.ModelAdmin):
+class UrlAdmin(admin.ModelAdmin):
     lists_display = ('slug', 'full_url', 'creation_date', 'count_clicks')
 
 
-admin.site.register(Urls, UrlsAdmin)
+admin.site.register(Url, UrlAdmin)

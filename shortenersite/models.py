@@ -2,7 +2,7 @@ from django.db import models
 from django.core import validators
 
 
-class Urls(models.Model):
+class Url(models.Model):
     slug = models.SlugField(
         max_length=6,
         primary_key=True,
