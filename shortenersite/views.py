@@ -7,6 +7,7 @@ from django.conf import settings
 from .models import Url
 
 
+
 def index(request):
     return render(request, 'shortenersite/index.html')
 

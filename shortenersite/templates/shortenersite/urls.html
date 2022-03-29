@@ -7,14 +7,14 @@
 <div class="panel panel-default">
     {% for url in urls %}
         <div class="panel-footer">
-            <span id="url-result">
                 <div class="flex-container">
-                    <div>Сокращенная ссылка: <a href="{{ base_url }}/{{ url.slug }}">{{ base_url }}/{{ url.slug }}</a></div>
-                    <div>Полная ссылка: <a href="{{ url.full_url }}">{{ url.full_url }}</a></div>
-                    <div>Количество переходов: {{ url.count_clicks }}</div>
-                    <div>Дата создания ссылки: {{ url.creation_date }}</div>
+                    <span id="url-result">
+                        <p>Сокращенная ссылка: <a href="{{ base_url }}/{{ url.slug }}">{{ base_url }}/{{ url.slug }}</a></p>
+                        <p>Полная ссылка: <a href="{{ url.full_url }}">{{ url.full_url }}</a></p>
+                        <p>Количество переходов: {{ url.count_clicks }}</p>
+                        <p>Дата создания ссылки: {{ url.creation_date }}</p>
+                    </span>
                 </div>
-            </span>
         </div>
     {% endfor %}
 </div>
