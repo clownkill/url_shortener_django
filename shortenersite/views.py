@@ -1,11 +1,11 @@
-import hashlib
-import json
+from uuid import uuid4
 
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.conf import settings
 
 from .models import Url
+
 
 def index(request):
     return render(request, 'shortenersite/index.html')
@@ -29,26 +29,23 @@ def redirect_original(request, slug):
 def shorten_url(request):
     url = request.POST.get('url', '')
     if not (url == ''):
-        slug = get_short_code(url)
+        slug = get_short_code()
         if not(url.startswith('http')):
             url = normalize_url(url)
         processed_url = Url(full_url=url, slug=slug)
         processed_url.save()
 
-        response_data = {}
-        response_data['url'] = f'{settings.SITE_URL}/{slug}'
+        response_data = {
+            'url': f'{settings.SITE_URL}/{slug}',
+        }
 
         return JsonResponse(response_data)
     return JsonResponse({'error': 'error occurs'})
 
 
-def get_short_code(url):
-    while True:
-        slug = hashlib.md5(url.encode()).hexdigest()[:5]
-        try:
-            temp = Url.objects.get(pk=slug)
-        except:
-            return slug
+def get_short_code():
+    slug = str(uuid4())[:5]
+    return slug
 
 
 def normalize_url(url):
