@@ -2,7 +2,7 @@ import hashlib
 import json
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.conf import settings
 
 from .models import Url
@@ -37,9 +37,9 @@ def shorten_url(request):
 
         response_data = {}
         response_data['url'] = settings.SITE_URL + '/' + slug
-        print(response_data)
-        return HttpResponse(json.dumps(response_data), content_type='application/json')
-    return HttpResponse(json.dumps({'error': 'error occurs'}), content_type='application/json')
+
+        return JsonResponse(response_data)
+    return JsonResponse({'error': 'error occurs'})
 
 
 def get_short_code(url):
