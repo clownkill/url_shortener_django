@@ -19,11 +19,11 @@ def show_urls(request):
     return render(request, 'shortenersite/urls.html', context)
 
 
-def redirect_original(request, short_id):
-    url = get_object_or_404(Urls, pk=short_id)
-    url.count += 1
+def redirect_original(request, slug):
+    url = get_object_or_404(Urls, pk=slug)
+    url.count_clicks += 1
     url.save()
-    return HttpResponseRedirect(url.httpurl)
+    return HttpResponseRedirect(url.full_url)
 
 
 def shorten_url(request):
@@ -32,13 +32,15 @@ def shorten_url(request):
         slug = get_short_code(url)
         if not(url.startswith('http')):
             url = normalize_url(url)
-        b = Urls(httpurl=url, slug=slug)
+        b = Urls(full_url=url, slug=slug)
         b.save()
 
         response_data = {}
         response_data['url'] = settings.SITE_URL + '/' + slug
+        print(response_data)
         return HttpResponse(json.dumps(response_data), content_type='application/json')
     return HttpResponse(json.dumps({'error': 'error occurs'}), content_type='application/json')
+
 
 def get_short_code(url):
     while True:

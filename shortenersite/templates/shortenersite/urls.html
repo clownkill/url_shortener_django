@@ -9,10 +9,10 @@
         <div class="panel-footer">
             <span id="url-result">
                 <div class="flex-container">
-                    <div>Сокращенная ссылка: <a href="{{ base_url }}/{{ url.short_id }}">{{ base_url }}/{{ url.short_id }}</a></div>
-                    <div>Полная ссылка: <a href="{{ url.httpurl }}">{{ url.httpurl }}</a></div>
-                    <div>Количество переходов: {{ url.count }}</div>
-                    <div>Дата создания ссылки: {{ url.pub_date }}</div>
+                    <div>Сокращенная ссылка: <a href="{{ base_url }}/{{ url.slug }}">{{ base_url }}/{{ url.slug }}</a></div>
+                    <div>Полная ссылка: <a href="{{ url.full_url }}">{{ url.full_url }}</a></div>
+                    <div>Количество переходов: {{ url.count_clicks }}</div>
+                    <div>Дата создания ссылки: {{ url.creation_date }}</div>
                 </div>
             </span>
         </div>
