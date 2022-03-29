@@ -32,8 +32,8 @@ def shorten_url(request):
         slug = get_short_code(url)
         if not(url.startswith('http')):
             url = normalize_url(url)
-        b = Url(full_url=url, slug=slug)
-        b.save()
+        processed_url = Url(full_url=url, slug=slug)
+        processed_url.save()
 
         response_data = {}
         response_data['url'] = settings.SITE_URL + '/' + slug
